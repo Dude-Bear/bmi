@@ -1,8 +1,21 @@
 package com.swp.bmi.user;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class User {
+@Entity
+@Table
+public class BmiUser {
+    @Id
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private Long id;
     private String name;
     private String eMail;
@@ -11,14 +24,14 @@ public class User {
     private Integer size;
     private Integer weight;
 
-    public User() {
+    public BmiUser() {
     }
 
-    public User(Long id) {
+    public BmiUser(Long id) {
         this.id = id;
     }
 
-    public User(Long id, String name, String eMail, LocalDate dob, Integer age, Integer size, Integer weight) {
+    public BmiUser(String name, String eMail, LocalDate dob, Integer age, Integer size, Integer weight) {
         this.id = id;
         this.name = name;
         this.eMail = eMail;
