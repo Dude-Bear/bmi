@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BmiUserService {
@@ -18,5 +19,14 @@ public class BmiUserService {
 
     public List<BmiUser> getUsers() {
         return bmiUserRepository.findAll();
+    }
+
+    public void addNewUser(BmiUser bmiUser) {
+        Optional<BmiUser> userOptional = bmiUserRepository
+                .findBmiUserByEMail(bmiUser.geteMail());
+        if (userOptional.isPresent()) {
+            throw new IllegalStateException("email Taken");
+        }
+        bmiUserRepository.save(bmiUser);
     }
 }

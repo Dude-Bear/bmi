@@ -1,9 +1,7 @@
 package com.swp.bmi.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,15 +9,20 @@ import java.util.List;
 @RequestMapping(path = "api/v1/user")
 public class BmiUserController {
 
-    private final BmiUserService userService;
+    private final BmiUserService bmiUserService;
 
     @Autowired
-    public BmiUserController(BmiUserService userService) {
-        this.userService = userService;
+    public BmiUserController(BmiUserService bmiUserService) {
+        this.bmiUserService = bmiUserService;
     }
 
     @GetMapping
     public List<BmiUser> getUser() {
-        return userService.getUsers();
+        return bmiUserService.getUsers();
+    }
+
+    @PostMapping
+    public void registerNewUser(@RequestBody BmiUser bmiUser){
+        bmiUserService.addNewUser(bmiUser);
     }
 }

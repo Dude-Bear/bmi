@@ -19,7 +19,6 @@ public class BmiUserConfig {
                     "bjoern",
                     "bjoern@test.de",
                     LocalDate.of(2000, 01, 01),
-                    21,
                     165,
                     55
             );
@@ -28,8 +27,7 @@ public class BmiUserConfig {
 
                     "sina",
                     "sina@test.de",
-                    LocalDate.of(2001, 01, 01),
-                    20,
+                    LocalDate.of(1990, 01, 01),
                     165,
                     55
             );

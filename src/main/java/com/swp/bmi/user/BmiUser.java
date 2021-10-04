@@ -2,6 +2,7 @@ package com.swp.bmi.user;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -20,6 +21,7 @@ public class BmiUser {
     private String name;
     private String eMail;
     private LocalDate dob;
+    @Transient
     private Integer age;
     private Integer size;
     private Integer weight;
@@ -27,16 +29,19 @@ public class BmiUser {
     public BmiUser() {
     }
 
-    public BmiUser(Long id) {
-        this.id = id;
+    public BmiUser(String name, String eMail, LocalDate dob, Integer size, Integer weight) {
+        this.name = name;
+        this.eMail = eMail;
+        this.dob = dob;
+        this.size = size;
+        this.weight = weight;
     }
 
-    public BmiUser(String name, String eMail, LocalDate dob, Integer age, Integer size, Integer weight) {
+    public BmiUser(Long id, String name, String eMail, LocalDate dob, Integer size, Integer weight) {
         this.id = id;
         this.name = name;
         this.eMail = eMail;
         this.dob = dob;
-        this.age = age;
         this.size = size;
         this.weight = weight;
     }
@@ -74,7 +79,8 @@ public class BmiUser {
     }
 
     public Integer getAge() {
-        return age;
+
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
