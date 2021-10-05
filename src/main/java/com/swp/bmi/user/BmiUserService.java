@@ -29,4 +29,13 @@ public class BmiUserService {
         }
         bmiUserRepository.save(bmiUser);
     }
+
+    public void deleteUser(Long userId) {
+        boolean exists = bmiUserRepository.existsById(userId);
+        if (!exists){
+            throw new IllegalStateException ("User with id" + userId + "does not exists");
+        } else {
+            bmiUserRepository.deleteById(userId);
+        }
+    }
 }

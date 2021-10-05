@@ -25,4 +25,9 @@ public class BmiUserController {
     public void registerNewUser(@RequestBody BmiUser bmiUser){
         bmiUserService.addNewUser(bmiUser);
     }
+
+    @DeleteMapping (path = "{userID}")
+    public void deleteBmiUser (@PathVariable("userID") Long userId){
+        bmiUserService.deleteUser(userId);
+    }
 }
