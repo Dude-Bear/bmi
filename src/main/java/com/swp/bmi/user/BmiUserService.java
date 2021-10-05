@@ -2,6 +2,7 @@ package com.swp.bmi.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,8 +23,7 @@ public class BmiUserService {
     }
 
     public void addNewUser(BmiUser bmiUser) {
-        Optional<BmiUser> userOptional = bmiUserRepository
-                .findBmiUserByEMail(bmiUser.geteMail());
+        Optional<BmiUser> userOptional = bmiUserRepository.findBmiUserByEMail(bmiUser.geteMail());
         if (userOptional.isPresent()) {
             throw new IllegalStateException("email Taken");
         }
@@ -32,10 +32,34 @@ public class BmiUserService {
 
     public void deleteUser(Long userId) {
         boolean exists = bmiUserRepository.existsById(userId);
-        if (!exists){
-            throw new IllegalStateException ("User with id" + userId + "does not exists");
+        if (!exists) {
+            throw new IllegalStateException("User with id" + userId + "does not exists");
         } else {
             bmiUserRepository.deleteById(userId);
         }
+    }
+
+    @Transactional
+    public void updateUser(Long userId, String name, String eMail, Integer weight, Integer height) {
+        BmiUser user = bmiUserRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exists"));
+        if (name != null && name.length() > 0) {
+            user.setName(name);
+        }
+        if (eMail != null && eMail.length() > 0) {
+            Optional<BmiUser> userOptional = bmiUserRepository.findBmiUserByEMail(eMail);
+            if (userOptional.isPresent()) {
+                throw new IllegalStateException("email Taken");
+            } else {
+                user.seteMail(eMail);
+            }
+        }
+        if (weight != null && weight > 0) {
+            user.setWeight(weight);
+        }
+        if (height != null && height > 0) {
+            user.setHeight(height);
+        }
+
     }
 }

@@ -23,26 +23,26 @@ public class BmiUser {
     private LocalDate dob;
     @Transient
     private Integer age;
-    private Integer size;
+    private Integer height;
     private Integer weight;
 
     public BmiUser() {
     }
 
-    public BmiUser(String name, String eMail, LocalDate dob, Integer size, Integer weight) {
+    public BmiUser(String name, String eMail, LocalDate dob, Integer height, Integer weight) {
         this.name = name;
         this.eMail = eMail;
         this.dob = dob;
-        this.size = size;
+        this.height = height;
         this.weight = weight;
     }
 
-    public BmiUser(Long id, String name, String eMail, LocalDate dob, Integer size, Integer weight) {
+    public BmiUser(Long id, String name, String eMail, LocalDate dob, Integer height, Integer weight) {
         this.id = id;
         this.name = name;
         this.eMail = eMail;
         this.dob = dob;
-        this.size = size;
+        this.height = height;
         this.weight = weight;
     }
 
@@ -87,12 +87,12 @@ public class BmiUser {
         this.age = age;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getHeight() {
+        return height;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setHeight(Integer size) {
+        this.height = size;
     }
 
     public Integer getWeight() {
@@ -111,7 +111,7 @@ public class BmiUser {
                 ", eMail='" + eMail + '\'' +
                 ", dob=" + dob +
                 ", age=" + age +
-                ", size=" + size +
+                ", size=" + height +
                 ", weight=" + weight +
                 '}';
     }
