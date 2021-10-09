@@ -1,34 +1,4 @@
 <section>
-  <h1 style="color: black">Calculate Body Mass Index</h1>
-  <form>
-    <div>
-      <label for="weight"> Weight: </label>
-      <input [(ngModel)]="weight" type="number" name="weight" id="weight" />
-    </div>
-    <div *ngIf="isUserUnKnown">
-      <label for="height"> Height: </label>
-      <input [(ngModel)]="height" type="number" name="height" id="height" />
-    </div>
-    <div *ngIf="isUserUnKnown">
-      <label for="birthDay"> Birth date: </label>
-      <input [(ngModel)]="birthDay" type="date" name="birthDay" id="birthDay" />
-    </div>
-    <app-button color="green" text="Calculate" (btnClick)="CalculateBMI()">
-    </app-button>
-  </form>
-  <p>{{ personalInformation }}</p>
-  <p>BMI: {{ bmiValue }}</p>
-
-  <app-button
-    *ngIf="showAddValueToProfile"
-    color="orange"
-    text="Add Value to history"
-    (btnClick)="AddToProfile()"
-  >
-  </app-button>
-</section>
-<hr />
-<section>
   <h2 style="color: black">Classification</h2>
   <p>You can find more detailed information on the information page.</p>
   <h4>Generall BMI-Classification</h4>
