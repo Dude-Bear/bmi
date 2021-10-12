@@ -1,0 +1,48 @@
+.page-container {
+  height: 100%;
+  background: rgb(224, 224, 224);
+  display: flex;
+}
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.list-items {
+  padding-top: 100px;
+}
+
+.list-item {
+  display: flex;
+  font-size: 20px;
+  color: white;
+  padding: 10px 20px;
+}
+
+.list-item:hover {
+  color: orange;
+}
+
+.list-item.selected {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.special{
+ position: absolute;
+ width: 300px;
+ bottom: 0;
+}
+
+.login {
+  background: rgba(0, 255, 0, 0.4);
+}
+
+.register {
+  background: rgba(255, 0,0, 0.4);
+}
+
+.page-content-container {
+  padding: 50px;
+}
