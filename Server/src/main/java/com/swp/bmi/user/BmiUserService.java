@@ -1,6 +1,9 @@
 package com.swp.bmi.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,14 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BmiUserService {
+@AllArgsConstructor
+public class BmiUserService implements UserDetailsService {
 
+    private final static String USER_NOT_FOUND_MSG =
+            "user mit email %s not found";
     private final BmiUserRepository bmiUserRepository;
-
-    @Autowired
-    public BmiUserService(BmiUserRepository bmiUserRepository) {
-        this.bmiUserRepository = bmiUserRepository;
-    }
 
     public List<BmiUser> getUsers() {
         return bmiUserRepository.findAll();
@@ -59,6 +60,12 @@ public class BmiUserService {
         if (height != null && height > 0) {
             user.setHeight(height);
         }
+    }
 
+    @Override
+    public UserDetails loadUserByUsername(String email)
+            throws UsernameNotFoundException {
+        return bmiUserRepository.findBmiUserByEMail(email).orElseThrow(() ->
+                new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 }

@@ -1,5 +1,9 @@
 package com.swp.bmi.user;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +16,10 @@ import java.util.Collections;
 
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 public class BmiUser implements UserDetails {
     @Id
     @SequenceGenerator(
@@ -28,6 +36,7 @@ public class BmiUser implements UserDetails {
     private String username;
     private String eMail;
     private String password;
+    @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked;
     private Boolean enabled;
@@ -38,7 +47,22 @@ public class BmiUser implements UserDetails {
     private Integer height;
     private Integer weight;
 
-    public BmiUser() {
+    /*Constructor without id*/
+    public BmiUser(String name, String username, String eMail,
+                   String password, AppUserRole appUserRole,
+                   Boolean locked, Boolean enabled, LocalDate dob,
+                   Integer age, Integer height, Integer weight) {
+        this.name = name;
+        this.username = username;
+        this.eMail = eMail;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.dob = dob;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
     }
 
     public BmiUser(String name, String eMail, LocalDate dob, Integer height, Integer weight) {
