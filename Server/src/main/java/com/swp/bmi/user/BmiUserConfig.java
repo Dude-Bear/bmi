@@ -3,7 +3,6 @@ package com.swp.bmi.user;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.CommandLinePropertySource;
 
 import java.time.LocalDate;
 import java.util.List;

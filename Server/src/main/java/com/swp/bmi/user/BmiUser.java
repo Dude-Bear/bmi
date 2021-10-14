@@ -1,12 +1,26 @@
 package com.swp.bmi.user;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table
-public class BmiUser {
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+public class BmiUser implements UserDetails {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -19,14 +33,36 @@ public class BmiUser {
     )
     private Long id;
     private String name;
+    private String username;
     private String eMail;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private AppUserRole appUserRole;
+    private Boolean locked;
+    private Boolean enabled;
+
     private LocalDate dob;
     @Transient
     private Integer age;
     private Integer height;
     private Integer weight;
 
-    public BmiUser() {
+    /*Constructor without id*/
+    public BmiUser(String name, String username, String eMail,
+                   String password, AppUserRole appUserRole,
+                   Boolean locked, Boolean enabled, LocalDate dob,
+                   Integer age, Integer height, Integer weight) {
+        this.name = name;
+        this.username = username;
+        this.eMail = eMail;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.dob = dob;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
     }
 
     public BmiUser(String name, String eMail, LocalDate dob, Integer height, Integer weight) {
@@ -114,5 +150,42 @@ public class BmiUser {
                 ", size=" + height +
                 ", weight=" + weight +
                 '}';
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }
