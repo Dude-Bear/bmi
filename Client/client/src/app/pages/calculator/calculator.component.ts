@@ -57,7 +57,7 @@ export class CalculatorComponent implements OnInit {
     );
   }
 
-  GetPersonalInformation(bmiValue: number, age: number) {
+  GetPersonalInformation(bmiValue: number, age: number) : string {
     var information: string = '';
     if (bmiValue < 18.5) {
       information += 'You weight too little.';
