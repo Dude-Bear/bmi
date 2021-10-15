@@ -1,5 +1,6 @@
 package com.swp.bmi.registration;
 
+import com.swp.bmi.user.AppUserRole;
 import com.swp.bmi.user.BmiUser;
 import com.swp.bmi.user.BmiUserService;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,16 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
         return bmiUserService.signUpUser(
-                new BmiUser()
+                new BmiUser(
+                        request.getFirstName(),
+                        request.getLastName(),
+                        request.getEMail(),
+                        request.getPassword(),
+                        request.getDob(),
+                        request.getWeight(),
+                        request.getHeight(),
+                        AppUserRole.USER
+                )
         );
     }
 }

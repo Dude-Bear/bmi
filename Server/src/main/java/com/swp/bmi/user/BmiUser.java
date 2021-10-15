@@ -32,8 +32,8 @@ public class BmiUser implements UserDetails {
             generator = "user_sequence"
     )
     private Long id;
-    private String name;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String eMail;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -47,38 +47,38 @@ public class BmiUser implements UserDetails {
     private Integer weight;
 
     /*Constructor without id*/
-    public BmiUser(String name, String username, String eMail,
-                   String password, AppUserRole appUserRole,
-                   Boolean locked, Boolean enabled, LocalDate dob,
+    public BmiUser(String firstName, String lastName, String eMail,
+                   String password, AppUserRole appUserRole, LocalDate dob,
                    Integer age, Integer height, Integer weight) {
-        this.name = name;
-        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.eMail = eMail;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
         this.dob = dob;
         this.age = age;
         this.height = height;
         this.weight = weight;
     }
 
-    public BmiUser(String name, String eMail, LocalDate dob, Integer height, Integer weight) {
-        this.name = name;
+    public BmiUser(String firstName, String eMail, LocalDate dob, Integer height, Integer weight) {
+        this.firstName = firstName;
         this.eMail = eMail;
         this.dob = dob;
         this.height = height;
         this.weight = weight;
     }
 
-    public BmiUser(Long id, String name, String eMail, LocalDate dob, Integer height, Integer weight) {
+    public BmiUser(Long id, String firstName, String eMail, LocalDate dob, Integer height, Integer weight) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
         this.eMail = eMail;
         this.dob = dob;
         this.height = height;
         this.weight = weight;
+    }
+
+    public BmiUser(String firstName, String lastName, String eMail, String password, LocalDate dob, Integer weight, Integer height, AppUserRole user) {
     }
 
     public Long getId() {
@@ -89,12 +89,12 @@ public class BmiUser implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String geteMail() {
@@ -142,7 +142,7 @@ public class BmiUser implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstName + '\'' +
                 ", eMail='" + eMail + '\'' +
                 ", dob=" + dob +
                 ", age=" + age +
@@ -165,7 +165,11 @@ public class BmiUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return eMail;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     @Override

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +17,9 @@ public class BmiUserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user mit email %s not found";
-    private final BmiUserRepository bmiUserRepository;
 
+    private final BmiUserRepository bmiUserRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     public List<BmiUser> getUsers() {
         return bmiUserRepository.findAll();
     }
@@ -44,7 +46,7 @@ public class BmiUserService implements UserDetailsService {
         BmiUser user = bmiUserRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exists"));
         if (name != null && name.length() > 0) {
-            user.setName(name);
+            user.setFirstName(name);
         }
         if (eMail != null && eMail.length() > 0) {
             Optional<BmiUser> userOptional = bmiUserRepository.findBmiUserByEMail(eMail);
@@ -70,7 +72,20 @@ public class BmiUserService implements UserDetailsService {
     }
 
     public String signUpUser(BmiUser bmiUser){
-        return "";
+        boolean userExists = bmiUserRepository.findBmiUserByEMail(bmiUser.geteMail())
+                .isPresent();
+
+        if (userExists){
+            throw new IllegalStateException("email already exists");
+        }
+
+        String encodedPassword = bCryptPasswordEncoder.encode(bmiUser.getPassword());
+
+        bmiUser.setPassword(encodedPassword);
+
+        /*todo: send confirmation token*/
+
+        return "it works!";
     }
 
 }
