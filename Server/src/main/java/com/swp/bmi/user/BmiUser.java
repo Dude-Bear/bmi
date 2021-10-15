@@ -40,7 +40,6 @@ public class BmiUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked;
     private Boolean enabled;
-
     private LocalDate dob;
     @Transient
     private Integer age;

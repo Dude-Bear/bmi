@@ -68,4 +68,9 @@ public class BmiUserService implements UserDetailsService {
         return bmiUserRepository.findBmiUserByEMail(email).orElseThrow(() ->
                 new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
+
+    public String signUpUser(BmiUser bmiUser){
+        return "";
+    }
+
 }
