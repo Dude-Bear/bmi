@@ -1,21 +1,26 @@
+import { HistoryComponent } from './modules/history/history.component';
+import { CalculatorComponent } from './modules/calculator/calculator.component';
+import { LoginComponent } from './modules/login/login.component';
+import { FullwidthComponent } from './layouts/fullwidth/fullwidth.component';
+import { HomeComponent } from './modules/home/home.component';
+import { DefaultComponent } from './layouts/default/default.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalculatorComponent } from './pages/calculator/calculator.component';
-import { InformationComponent } from './pages/information/information.component';
-import { LoginComponent } from './pages/login/login.component';
-import { MainComponent } from './pages/main/main.component';
-import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
+    component: DefaultComponent,
     children: [
+      { path: '', component: HomeComponent },
       { path: 'Calculator', component: CalculatorComponent },
-      { path: 'Information', component: InformationComponent },
-      { path: 'Login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent },
+      { path: 'History', component: HistoryComponent },
     ],
+  },
+  {
+    path: '',
+    component: FullwidthComponent,
+    children: [{ path: 'Login', component: LoginComponent }],
   },
 ];
 

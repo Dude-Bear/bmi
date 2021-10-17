@@ -1,0 +1,20 @@
+<section>
+  <h1 style="color: black">Calculate Body Mass Index</h1>
+  <form>
+    <div>
+      <label for="weight"> Weight: </label>
+      <input [(ngModel)]="weight" type="number" name="weight" id="weight" />
+    </div>
+    <div *ngIf="isUserUnKnown">
+      <label for="height"> Height: </label>
+      <input [(ngModel)]="height" type="number" name="height" id="height" />
+    </div>
+    <div *ngIf="isUserUnKnown">
+      <label for="birthDay"> Birth date: </label>
+      <input [(ngModel)]="birthDay" type="date" name="birthDay" id="birthDay" />
+    </div>
+    <button (click)="calculate()">Click</button>
+  </form>
+  <p>{{ personalInformation }}</p>
+  <p>BMI: {{ bmiValue }}</p>
+</section>
