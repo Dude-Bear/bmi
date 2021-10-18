@@ -16,7 +16,10 @@ public class BmiUserConfig {
             BmiUser bjoern = new BmiUser(
 
                     "bjoern",
+                    "schriewer",
                     "bjoern@test.de",
+                    "pw",
+                    AppUserRole.USER,
                     LocalDate.of(2000, 01, 01),
                     165,
                     55
@@ -25,8 +28,11 @@ public class BmiUserConfig {
             BmiUser sina = new BmiUser(
 
                     "sina",
+                    "schriewer",
                     "sina@test.de",
-                    LocalDate.of(1990, 01, 01),
+                    "pw",
+                    AppUserRole.USER,
+                    LocalDate.of(2000, 01, 01),
                     165,
                     55
             );

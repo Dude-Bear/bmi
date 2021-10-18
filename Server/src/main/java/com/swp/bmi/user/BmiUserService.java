@@ -83,6 +83,8 @@ public class BmiUserService implements UserDetailsService {
 
         bmiUser.setPassword(encodedPassword);
 
+        bmiUserRepository.save(bmiUser);
+
         /*todo: send confirmation token*/
 
         return "it works!";

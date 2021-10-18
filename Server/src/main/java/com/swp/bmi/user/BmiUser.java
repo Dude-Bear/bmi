@@ -46,39 +46,15 @@ public class BmiUser implements UserDetails {
     private Integer height;
     private Integer weight;
 
-    /*Constructor without id*/
-    public BmiUser(String firstName, String lastName, String eMail,
-                   String password, AppUserRole appUserRole, LocalDate dob,
-                   Integer age, Integer height, Integer weight) {
+    public BmiUser(String firstName, String lastName, String eMail, String password, AppUserRole appUserRole, LocalDate dob, Integer height, Integer weight) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
         this.password = password;
         this.appUserRole = appUserRole;
         this.dob = dob;
-        this.age = age;
         this.height = height;
         this.weight = weight;
-    }
-
-    public BmiUser(String firstName, String eMail, LocalDate dob, Integer height, Integer weight) {
-        this.firstName = firstName;
-        this.eMail = eMail;
-        this.dob = dob;
-        this.height = height;
-        this.weight = weight;
-    }
-
-    public BmiUser(Long id, String firstName, String eMail, LocalDate dob, Integer height, Integer weight) {
-        this.id = id;
-        this.firstName = firstName;
-        this.eMail = eMail;
-        this.dob = dob;
-        this.height = height;
-        this.weight = weight;
-    }
-
-    public BmiUser(String firstName, String lastName, String eMail, String password, LocalDate dob, Integer weight, Integer height, AppUserRole user) {
     }
 
     public Long getId() {
@@ -177,10 +153,6 @@ public class BmiUser implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
 
     @Override
     public boolean isCredentialsNonExpired() {
@@ -191,4 +163,10 @@ public class BmiUser implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
 }

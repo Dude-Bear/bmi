@@ -25,10 +25,10 @@ public class RegistrationService {
                         request.getLastName(),
                         request.getEMail(),
                         request.getPassword(),
+                        AppUserRole.USER,
                         request.getDob(),
                         request.getWeight(),
-                        request.getHeight(),
-                        AppUserRole.USER
+                        request.getHeight()
                 )
         );
     }
