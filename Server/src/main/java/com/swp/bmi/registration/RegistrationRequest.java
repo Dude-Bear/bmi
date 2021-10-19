@@ -19,5 +19,5 @@ public class RegistrationRequest {
     private final LocalDate dob;
     private final Integer weight;
     private final Integer height;
-
+    private final LocalDate dateOfMeasurement;
 }

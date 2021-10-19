@@ -28,7 +28,8 @@ public class RegistrationService {
                         AppUserRole.USER,
                         request.getDob(),
                         request.getWeight(),
-                        request.getHeight()
+                        request.getHeight(),
+                        request.getDateOfMeasurement()
                 )
         );
     }

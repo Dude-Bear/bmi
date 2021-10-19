@@ -22,7 +22,8 @@ public class BmiUserConfig {
                     AppUserRole.USER,
                     LocalDate.of(2000, 01, 01),
                     165,
-                    55
+                    55,
+                    LocalDate.of(2021,10,19)
             );
 
             BmiUser sina = new BmiUser(
@@ -34,7 +35,9 @@ public class BmiUserConfig {
                     AppUserRole.USER,
                     LocalDate.of(2000, 01, 01),
                     165,
-                    55
+                    55,
+                    LocalDate.of(2021,10,19)
+
             );
 
             repository.saveAll(

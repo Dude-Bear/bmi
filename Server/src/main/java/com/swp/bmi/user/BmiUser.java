@@ -45,8 +45,10 @@ public class BmiUser implements UserDetails {
     private Integer age;
     private Integer height;
     private Integer weight;
+    private LocalDate dateOfMeasurement;
 
-    public BmiUser(String firstName, String lastName, String eMail, String password, AppUserRole appUserRole, LocalDate dob, Integer height, Integer weight) {
+    public BmiUser(String firstName, String lastName, String eMail, String password, AppUserRole appUserRole,
+                   LocalDate dob, Integer height, Integer weight, LocalDate dateOfMeasurement) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
@@ -55,6 +57,7 @@ public class BmiUser implements UserDetails {
         this.dob = dob;
         this.height = height;
         this.weight = weight;
+        this.dateOfMeasurement = dateOfMeasurement;
     }
 
     public Long getId() {
