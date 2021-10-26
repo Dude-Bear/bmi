@@ -22,18 +22,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf()
+                .disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**", "/api/v*/calculator/**")
-                    .permitAll()
+                .antMatchers("/api/v*/registration/**", "/api/v*/calculator/**", "/swagger-ui/**", "/v3/api-docs")
+                .permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.authenticationProvider(daoAuthenticationProvider());
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
 
     @Bean
