@@ -1,18 +1,19 @@
 package com.swp.bmi.calculator;
 
 import com.swp.bmi.types.NutritionalStatus;
+import com.swp.bmi.types.NutritionalStatusConverter;
 
 public class CalculatorResult {
     private int height;
     private int weight;
     private double result;
-    private NutritionalStatus status;
+    private int nutritionalStatus;
 
     public CalculatorResult(int height, int weight) {
         this.height = height;
         this.weight = weight;
         this.result = calculateBodyMassIndex();
-        this.status = calculateNutritionalStatus();
+        this.nutritionalStatus = NutritionalStatusConverter.ToInteger(calculateNutritionalStatus());
     }
 
     public int getHeight() {
@@ -39,12 +40,12 @@ public class CalculatorResult {
         this.result = result;
     }
 
-    public NutritionalStatus getStatus() {
-        return status;
+    public int getNutritionalStatus() {
+        return nutritionalStatus;
     }
 
-    public void setStatus(NutritionalStatus status) {
-        this.status = status;
+    public void setNutritionalStatus(int status) {
+        this.nutritionalStatus = status;
     }
 
     private double calculateBodyMassIndex(){
