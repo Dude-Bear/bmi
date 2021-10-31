@@ -21,8 +21,8 @@ public class BmiUserConfig {
                     "pw",
                     AppUserRole.USER,
                     LocalDate.of(2000, 01, 01),
-                    165,
-                    55,
+                    188,
+                    90,
                     LocalDate.of(2021,10,19)
             );
 
