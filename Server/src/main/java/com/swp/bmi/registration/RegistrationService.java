@@ -26,10 +26,7 @@ public class RegistrationService {
                         request.getEMail(),
                         request.getPassword(),
                         AppUserRole.USER,
-                        request.getDob(),
-                        request.getWeight(),
-                        request.getHeight(),
-                        request.getDateOfMeasurement()
+                        request.getDob()
                 )
         );
     }

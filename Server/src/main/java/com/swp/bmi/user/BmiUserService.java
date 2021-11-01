@@ -56,12 +56,7 @@ public class BmiUserService implements UserDetailsService {
                 user.seteMail(eMail);
             }
         }
-        if (weight != null && weight > 0) {
-            user.setWeight(weight);
-        }
-        if (height != null && height > 0) {
-            user.setHeight(height);
-        }
+
     }
 
     @Override

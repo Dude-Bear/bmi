@@ -20,10 +20,7 @@ public class BmiUserConfig {
                     "bjoern@test.de",
                     "pw",
                     AppUserRole.USER,
-                    LocalDate.of(2000, 01, 01),
-                    188,
-                    90,
-                    LocalDate.of(2021,10,19)
+                    LocalDate.of(2000, 01, 01)
             );
 
             BmiUser sina = new BmiUser(
@@ -33,10 +30,7 @@ public class BmiUserConfig {
                     "sina@test.de",
                     "pw",
                     AppUserRole.USER,
-                    LocalDate.of(2000, 01, 01),
-                    165,
-                    55,
-                    LocalDate.of(2021,10,19)
+                    LocalDate.of(2000, 01, 01)
 
             );
 

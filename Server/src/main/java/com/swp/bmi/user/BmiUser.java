@@ -21,7 +21,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 public class BmiUser implements UserDetails {
-    @Id
+    /*Hibernate logic to autoincrement the id for each user (+1)*/
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -31,11 +31,32 @@ public class BmiUser implements UserDetails {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
+    @Id
     private Long id;
+
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
+
+    @Column(
+            name = "last_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
+
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String eMail;
+
     private String password;
+
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked;
@@ -43,21 +64,15 @@ public class BmiUser implements UserDetails {
     private LocalDate dob;
     @Transient
     private Integer age;
-    private Integer height;
-    private Integer weight;
-    private LocalDate dateOfMeasurement;
 
     public BmiUser(String firstName, String lastName, String eMail, String password, AppUserRole appUserRole,
-                   LocalDate dob, Integer height, Integer weight, LocalDate dateOfMeasurement) {
+                   LocalDate dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
         this.password = password;
         this.appUserRole = appUserRole;
         this.dob = dob;
-        this.height = height;
-        this.weight = weight;
-        this.dateOfMeasurement = dateOfMeasurement;
     }
 
     public Long getId() {
@@ -101,21 +116,7 @@ public class BmiUser implements UserDetails {
         this.age = age;
     }
 
-    public Integer getHeight() {
-        return height;
-    }
 
-    public void setHeight(Integer size) {
-        this.height = size;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
 
     @Override
     public String toString() {
@@ -125,8 +126,6 @@ public class BmiUser implements UserDetails {
                 ", eMail='" + eMail + '\'' +
                 ", dob=" + dob +
                 ", age=" + age +
-                ", size=" + height +
-                ", weight=" + weight +
                 '}';
     }
 
